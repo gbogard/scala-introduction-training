@@ -54,7 +54,7 @@ object Collections {
    * EXERCICE : écrire une fonction qui retourne les nombres pairs
    * d'une liste de nombres.
    */
-  def getEven(list: List[Int]): List[Int] = list.filter(_ % 2 == 0)
+  def getEven(list: List[Int]): List[Int] = ???
 
   /*
    * --------------------------------
@@ -67,12 +67,9 @@ object Collections {
    *       Moyenne = Somme / nombre de valeurs
    *    Votre fonction devra prendre en compte le cas de la division par 0
    */
-  def toCelsius(fahrenheit: Float): Float =
-    (fahrenheit - 32) * (5F/9)
+  def toCelsius(fahrenheit: Float): Float = ???
 
-  def toCelsius(fahrenheit: List[Float]): List[Float] = fahrenheit map toCelsius
+  def toCelsius(fahrenheit: List[Float]): List[Float] = fahrenheit
 
-  def temperaturesMean(temps: List[Float]): Option[Float] = temps.headOption.map(_ =>
-    temps.sum / temps.length
-  )
+  def temperaturesMean(temps: List[Float]): Option[Float] = ???
 }

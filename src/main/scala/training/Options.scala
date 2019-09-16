@@ -58,7 +58,7 @@ object Options {
    * Écrire une fonction qui prend une Option[String] en paramètre et renvoie
    * une Option[String] dont le texte est en majuscules.
    */
-  def toUpperCase(opt: Option[String]): Option[String] = opt.map(_.toUpperCase)
+  def toUpperCase(opt: Option[String]): Option[String] = ???
 
   /*
    * ---------------------
@@ -72,6 +72,5 @@ object Options {
    * Comme dans Hello.scala, un petit "s" avant un String litteral permet d'interpoler
    * des valeurs préfixées par un "$"
    */
-  def getUsername(firstName: String, lastName: String, username: Option[String]): String =
-    username getOrElse s"$firstName.$lastName"
+  def getUsername(firstName: String, lastName: String, username: Option[String]): String = ???
 }

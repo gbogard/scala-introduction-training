@@ -48,14 +48,5 @@ object CaseClasses {
    *   - 2 ans si la personne a 30 ans ou plus
    *   - 0 si la personne a moins de 30 ans
    */
-  def magicCream(user: User): User =
-    if (user.age >= 60) {
-      user.copy(age = user.age - 10)
-    } else if (user.age >= 50) {
-      user.copy(age = user.age - 5)
-    } else if(user.age >= 30) {
-      user.copy(age = user.age - 2)
-    } else {
-      user
-    }
+  def magicCream(user: User): User = ???
 }
