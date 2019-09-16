@@ -32,6 +32,28 @@ class LogicSpec extends FunSpec with Matchers {
     }
   }
 
+  describe("Get move") {
+    it("should return None when there is no move at this position") {
+      val board =  List(
+        List(None, None, None),
+        List(None, None, None),
+        List(None, None, None)
+      )
+
+      Logic.getMove(board)(Position(0, 1)) shouldBe None
+    }
+
+    it("should return a X when there is a X at this position") {
+      val board =  List(
+        List(None, None, None),
+        List(None, None, None),
+        List(None, Some(X), None)
+      )
+
+      Logic.getMove(board)(Position(1, 2)) shouldBe Some(X)
+    }
+  }
+
   describe("Place move") {
     it("Should place a cross in the center of this empty 3x3 board") {
       val expected = List(

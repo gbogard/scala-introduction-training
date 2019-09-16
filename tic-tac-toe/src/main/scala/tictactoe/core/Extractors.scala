@@ -14,8 +14,7 @@ object Extractors {
 
   def extractPosition(boardSize: Int)(line: String): Option[Position] =
     line.split(" ").toList match {
-      case Int(x) :: Int(y) :: Nil
-          if (0 <= x && x < boardSize && 0 <= y && y < boardSize) =>
+      case Int(x) :: Int(y) :: Nil if (0 <= x && x < boardSize && 0 <= y && y < boardSize) =>
         Some(Position(x, y))
       case _ => None
     }

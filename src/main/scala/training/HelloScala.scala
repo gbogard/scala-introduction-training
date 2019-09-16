@@ -14,7 +14,7 @@ object HelloScala extends App {
  * dans sa signature. C'est la manière d'accéder aux arguments passés à note programme.
  */
 object HelloYou {
-  def main(args: Array[String]) {
+   def main(args: Array[String]): Unit = {
     // Beaucoup de choses ici, on y reviendra plus tard
     args.headOption.foreach(name => println(s"Hello, $name!"))
   }

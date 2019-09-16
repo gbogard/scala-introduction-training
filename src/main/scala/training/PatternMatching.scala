@@ -33,8 +33,7 @@ object PatternMatching {
   def lastName(beatle: Beatle) = beatle match {
     case John   => "Lennon"
     case Paul   => "McCartney"
-    case George => "Harrisson"
-    case Ringo  => "Starr"
+    case _ => ???
   }
   // --------------------------------
 
@@ -80,10 +79,7 @@ object PatternMatching {
    * s"Hello ${user.name}" si l'expression est composée ou  contient un "."
    */
   def listFriends(friends: List[String]): String = friends match {
-    case friend :: Nil          => s"Mon meilleur ami est $friend"
-    case first :: second :: Nil => s"Mes meilleurs amis sont $first et $second"
-    case best :: rest           => s"Je suis ami avec ${enumerate(rest)}, mais $best est mon meilleur ami"
-    case Nil => "Je me tiens compagnie moi-même"
+    case Nil => ???
   }
   // --------------------------------
 }

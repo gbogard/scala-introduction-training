@@ -75,5 +75,5 @@ object Functions {
    * Le deuxième argument doit être en call-by-name pour que la méthode ne plante
    * pas s'il le deuxième argument lance une exception.
    */
-  def returnFirst(a: Int, b: => Int) = a
+  def returnFirst(a: Int, b: Int): Int = ???
 }

@@ -105,8 +105,5 @@ object SideEffects {
     userId: String,
     cache: Map[String, User],
     fetchUser: String => IO[User]
-  ): IO[User] = cache.get(userId) match {
-    case Some(user) => IO.pure(user)
-    case None => fetchUser(userId)
-  }
+  ): IO[User] = ???
 }

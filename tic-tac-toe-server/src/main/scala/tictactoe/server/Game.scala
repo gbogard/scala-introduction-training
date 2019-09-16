@@ -63,7 +63,7 @@ class Game(xPlayer: Socket[IO], oPlayer: Socket[IO])(implicit cs: ContextShift[I
     val game = Logic
       .game(
         selectPlayer = randomChoosePlayer,
-        state => {
+        promptMove = state => {
           val boardSize   = state.board(0).length
           val (socket, _) = selectSockets(state.currentPlayer)
           def promptAndWait: IO[Position] =
