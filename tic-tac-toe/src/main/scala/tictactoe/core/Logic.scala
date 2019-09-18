@@ -29,7 +29,7 @@ object Logic {
   /**
     * Retourne le prochain joueur en fonction du joueur courant
     */
-  def getNextPlayer(currentPlayer: Move) = ???
+  def getNextPlayer(currentPlayer: Move): Move = ???
 
   /**
     * Est-ce que le plateau est plein ?
@@ -77,7 +77,7 @@ object Logic {
         // When the state is Initial, we need to run the player selection program,
         // build the board, and transition to InProgress
         ???
-      case s @ InProgress(board, currentPlayer) =>
+      case s @ InProgress(board, currentPlayer) => ???
         // When the state is InProgress, we need to
         // - check whether the board is full -> transition to Finished
         // - check whether there is a winner -> transition to Finished
