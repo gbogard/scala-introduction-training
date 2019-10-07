@@ -73,6 +73,4 @@ object Options {
    * des valeurs préfixées par un "$"
    */
   def getUsername(firstName: String, lastName: String, username: Option[String]): String = ???
-
-
 }
