@@ -6,13 +6,17 @@ import training.CaseClasses.User
 object PatternMatching {
 
   /*
-   * Le pattern matching est une des fonctionnalités les plus puissantes et les plus utilisés du langage.
-   * Il s'agit d'associer une expression, à gauche, à une autre, à droite. L'expression de gauche peut
-   * être déstructurée et associée selon des conditions arbitraires.
+   * Pattern matching is one of the most widely-used and powerful features of the language.
+   * It's used to map a pattern of expressions, on the left side, to an expression, on the right.
+   * The left side of the `match` can be used to deconstruct structures and match them according to
+   * arbitrary conditions.
    *
-   * Voyez le comme un switch sous stéroïdes.
+   * Structures that can be deconstructed include case classes, lists and tuples. But one can also write an
+   * extractor for any type.
    *
-   * Voilà une implémentation de FizzBuzz en Scala :
+   * Think of it as `switch` on steroids
+   *
+   * Here is an implementation of FizzBuzz using pattern matching
    */
   def fizzbuzz(value: Int) = (value % 3, value % 5) match {
     case (0, 0) => "fizzbuzz"
@@ -22,13 +26,14 @@ object PatternMatching {
   }
 
   /*
-   * Le pattern matching est particulièrement utile avec les types somme
+   * Pattern matching is especially useful with sum types.
+   * The compiler will warn you when a match statement is not exhaustive, preventing
+   * undefined behavior at runtime.
    *
    * --------------------------------
-   * EXERCICE :
-   * Compléter la fonction ci-dessous pour renvoyer le nom de famille de tous
-   * les Beatles.
-   * (Les résultats attendus sont dans les tests)
+   * EXERCISE :
+   * Complete the following to return the last names of all the Beatles.
+   * (Expected results are in the test suite)
    */
   def lastName(beatle: Beatle) = beatle match {
     case John   => "Lennon"
@@ -39,26 +44,26 @@ object PatternMatching {
   // --------------------------------
 
   /*
-   * Il permet de déstructurer des case classes
+   * Pattern matching can be used to deconstruct and match case classes
    */
   case class Message(from: User, to: User, body: Option[String])
 
   def interceptMessage(message: Message) = message match {
     case Message(from, to, Some(message)) =>
-      println(s"${from.name} a envoyé $message à ${to.name}")
+      println(s"${from.name} has sent $message to ${to.name}")
     case Message(from, to, None) =>
-      println(s"${from.name} a envoyé un message vide à ${to.name}")
+      println(s"${from.name} has sent an empty message to ${to.name}")
   }
 
   /*
-   * Des listes:
+   * Lists:
    */
   val friends = List("Alex", "Peter", "Jane")
 
   def enumerate(elements: List[String]): String = elements match {
     case Nil           => ""
     case single :: Nil => single
-    case list :+ last  => list.mkString(", ") + " et " + last
+    case list :+ last  => list.mkString(", ") + " and " + last
   }
 
   // enumerate(friends)
@@ -66,24 +71,26 @@ object PatternMatching {
 
   /*
    * --------------------------------
-   * EXERCICE :
-   * Créer une fonction qui accepte une liste d'amis et renvoie une phrase :
-   *  - "Mon meilleur ami est Alex" si la liste ne contient qu'un ami
-   *  - "Mes meilleurs amis sont Alex et Peter" si la liste contient exactement deux amis
-   *  - "Je suis ami avec Peter et Jane, mais Alex est mon meilleur ami" si la liste contient trois amis ou plus
-   *  (le meilleur ami est le premier de la liste)
-   *  - "Je me tiens compagnie moi-même" si la liste ne contient aucun ami
+   * EXERCISE :
    *
-   * Vous pouvez utiliser la fonction enumerate ci-dessus.
-   * Rappel sur l'interpolation de String:
-   * s"Hello $world" si l'expression est simple
-   * s"Hello ${user.name}" si l'expression est composée ou  contient un "."
+   * Write a function that takes a list of friends (`List[String]`) and returns a sentence (`String`):
+   *  - "Alex is my best friend" when the list has exactly one friend
+   *  - "My best friends are Alex and Peter" when the list has exactly two friends
+   *  - "I am friend with Peter and Jane, but Alex is my best friend" when the list has three friends or more.
+   *  (The best friend is the first one of the list)
+   *  - "I don't need anyone's company" when the list is empty
+   *
+   * You can use the enumerate function above
+   *
+   * String interpolation reminder
+   * s"Hello $world" one the expression is simple
+   * s"Hello ${user.name}" when the expression includes a "."
    */
   def listFriends(friends: List[String]): String = friends match {
-    case friend :: Nil          => s"Mon meilleur ami est $friend"
-    case first :: second :: Nil => s"Mes meilleurs amis sont $first et $second"
-    case best :: rest           => s"Je suis ami avec ${enumerate(rest)}, mais $best est mon meilleur ami"
-    case Nil => "Je me tiens compagnie moi-même"
+    case friend :: Nil          => s"$friend is my best friend"
+    case first :: second :: Nil => s"My best friends are $first and $second"
+    case best :: rest           => s"I am friend with ${enumerate(rest)}, but $best is my best friend"
+    case Nil => "I don't need anyone's company"
   }
   // --------------------------------
 }

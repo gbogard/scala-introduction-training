@@ -1,21 +1,20 @@
 package training
 
 /*
- * En Scala, il existe deux manières de déclarer le Main d'une application :
- *  - déclarer un `object` qui hérite de `App`. Tout le corps de l'objet sera
- *  évalué au démarrage du programme.
+ * In Scala, there are two ways of declaring the entry point of an application:
+ * - You can define an object that inherits from the `App` trait, and put your code inside the object like so:
  */
 object HelloScala extends App {
-  println("Hello World! Bienvenue à cette formation.")
+  println("Hello World! Welcome to this training session!")
 }
 
 /*
- * - ou bien déclarer un objet avec une methode `main` acceptant un tableau de String
- * dans sa signature. C'est la manière d'accéder aux arguments passés à note programme.
+ * - or you can define a `main` function that takes an array of `String` as its argument.
+ *  This way we can access the command line arguments passed to our application
  */
 object HelloYou {
   def main(args: Array[String]) {
-    // Beaucoup de choses ici, on y reviendra plus tard
+    // Lots of things here right now, but we'll cover it later
     args.headOption.foreach(name => println(s"Hello, $name!"))
   }
 }

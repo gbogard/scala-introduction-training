@@ -2,35 +2,35 @@ package training
 
 object Options {
   /*
-   * Scala utilise un type spécial pour encoder l'absence de valeur.
-   * Le type Option[T] est un type générique, qui peut prendre deux valeurs possibles:
-   *   - Some(T) : encapsule une valeur de type T
-   *   - None : encode l'absence de valeur
+   * Scala uses a special structure to encode values that can be absent
+   * The Option[T] type can take one of two possible values
+   *   - Some(T) : wraps a value of type T
+   *   - None : encodes the absence of a value
    */
 
-  // Alias de type!
+  // Look, type alias!
   type Parent = String
 
   val batmanDad: Option[Parent]  = None
   val batgirlDad: Option[Parent] = Some("Jim Gordon")
 
   /*
-   * Ainsi, une fonction qui peut renvoyer ou non une valeur est modelisée comme
-   * une fonction renvoyant une Option. Techniquement parlant, une fonction renvoie donc
-   * toujours une valeur.
+   * A function that may or may not yield a significant value is modeled as a function returning
+   * an Option.
+   * Technically speaking, functions always return a value.
    */
   def divide(a: Double, b: Double): Option[Double] =
     if (b == 0) None
     else Some(a / b)
 
   /*
-   * Il est possible d'appliquer une transformation à une option en utilisant `map`.
+   * One can apply a transformation to an Option using `map`.
    *
-   * Si vous avez une Option de A
-   * et une fonction de A vers B
-   * alors `map` vous donne une Option de B
+   * When you have an Option of A (Option[A])
+   * and a function from A to B (A => B)
+   * then `map` gives you an Option of B (Option[B])
    *
-   * Exemple :
+   * Example :
    */
   def double(a: Option[Int]): Option[Int] =
     a.map(value => value * 2)
@@ -41,8 +41,7 @@ object Options {
   // => None
 
   /**
-    * `getOrElse` permet de récupérer la valeur de l'option si c'est un Some,
-    * ou une valuer par défaut le cas échéant.
+    * `getOrElse` returns the value of an Option when it's a `Some`, or a default value otherwise
     */
   def getName(name: Option[String]): String = name.getOrElse("No name")
 
@@ -53,24 +52,24 @@ object Options {
 
   /*
    * --------------------------------
-   * EXERCICE :
+   * EXERCISE :
    *
-   * Écrire une fonction qui prend une Option[String] en paramètre et renvoie
-   * une Option[String] dont le texte est en majuscules.
+   * Write a function taking an `Option[String]` as argument. The return value must be
+   * an `Option[String]` where the content of the string has been set to upper-case.
    */
   def toUpperCase(opt: Option[String]): Option[String] = opt.map(_.toUpperCase)
 
   /*
    * ---------------------
-   * EXERCICE :
+   * EXERCISE :
    *
-   * Écrire une fonction qui prend en paramètres un nom de famille (String),
-   * un prénom (String), et un nom d'utilisateur optionnel (Option[String]) et
-   * renvoie soit le nom d'utilisateur défini par l'utilisateur, soit un nom
-   * d'utilisateur sous la forme "firstName.lastName"
+   * Write a function that takes a firstName (String), a lastName (String) and an optionally-defined
+   * username (Option[String]) and returns:
+   * - either the username defined by the user if defined
+   * - or a default name of the form `firstName.lastName`
    *
-   * Comme dans Hello.scala, un petit "s" avant un String litteral permet d'interpoler
-   * des valeurs préfixées par un "$"
+   * Look at HelloScala.scala. Prepending a string literal with a small `s` allows t interpolate
+   * values inside a string.
    */
   def getUsername(firstName: String, lastName: String, username: Option[String]): String =
     username getOrElse s"$firstName.$lastName"

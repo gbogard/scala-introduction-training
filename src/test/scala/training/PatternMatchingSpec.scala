@@ -23,23 +23,23 @@ class PatternMatchingSpec extends FunSpec with Matchers {
   }
 
   describe("listFriends") {
-    it("Should return 'Je me tiens compagnie moi-même' when the list is empty") {
-      PatternMatching.listFriends(Nil) shouldBe "Je me tiens compagnie moi-même"
+    it("Should return 'I don't need anyone's company' when the list is empty") {
+      PatternMatching.listFriends(Nil) shouldBe "I don't need anyone's company"
     }
 
-    it("Should return 'Mon meilleur ami est ...' when the list contains exactly one element") {
-      PatternMatching.listFriends("Winnie" :: Nil) shouldBe "Mon meilleur ami est Winnie"
+    it("Should return '... is my best friend' when the list contains exactly one element") {
+      PatternMatching.listFriends("Winnie" :: Nil) shouldBe "Winnie is my best friend"
     }
 
-    it("Should return 'Mes meilleurs amis sont ... et ...' when the list contains exactly two elements") {
-      PatternMatching.listFriends("Laura" :: "Suzanne" :: Nil) shouldBe "Mes meilleurs amis sont Laura et Suzanne"
+    it("Should return 'My best friends are ... and ...' when the list contains exactly two elements") {
+      PatternMatching.listFriends("Laura" :: "Suzanne" :: Nil) shouldBe "My best friends are Laura and Suzanne"
     }
 
     it(
-      "Should return 'Je suis ami avec ... et ..., mais ... est mon meilleur ami' when the list has more than 2 friends"
+      "Should return 'I am friend with ... and ..., but ... is my best friend' when the list has more than 2 friends"
     ) {
-      PatternMatching.listFriends("John" :: "Paul" :: "Ringo" :: Nil) shouldBe "Je suis ami avec Paul et Ringo, mais John est mon meilleur ami"
-      PatternMatching.listFriends("John" :: "Paul" :: "Ringo" :: "George" :: Nil) shouldBe "Je suis ami avec Paul, Ringo et George, mais John est mon meilleur ami"
+      PatternMatching.listFriends("John" :: "Paul" :: "Ringo" :: Nil) shouldBe "I am friend with Paul and Ringo, but John is my best friend"
+      PatternMatching.listFriends("John" :: "Paul" :: "Ringo" :: "George" :: Nil) shouldBe "I am friend with Paul, Ringo and George, but John is my best friend"
     }
   }
 }

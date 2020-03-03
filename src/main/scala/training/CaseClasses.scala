@@ -2,31 +2,29 @@ package training
 
 object CaseClasses {
   /*
-   * Les case classes sont des classes spéciales qui sont utilisées pour modéliser des données
-   * immuables.
-   * Elles fournissent des fonctionnalités supplémentaires par rapport aux classes classiques
+   * Case classes are special classes which are used to model immutable records of data.
+   * They provide additional features compared to regular classes.
    */
-
   case class User(name: String, age: Int)
 
-  val thierry = User("Thierry", 51)
-  val chantal = User("Chantal", 48)
+  val claire = User("Claire", 51)
+  val amy = User("Amy", 31)
 
-  println(s"Salut ${thierry.name}")
+  println(s"Hello ${amy.name}")
 
-  // Les case classes sont immuables
-  // chantal.name = "Chanchan" ne compile pas
+  // Case classes are immutable
+  // `amy.name = "Foo bar"` will not compile
 
-  // L'égalité entre les case classes est faite de manière structurelle
+  // Case classes are structurally compared for equality
   assert(User("John", 20) == User("John", 20))
 
-  // On peut "copier" une case class et changer seulement certains champs
-  val youngerThierry = thierry.copy(age = 25)
+  // One can `copy` a case class and override specific fields.
+  // A copy doesn't change the first case class
+  val youngerClaire = claire.copy(age = 25)
 
   /*
-   * Les case classes, comme les fonctions, peuvent inclure des champs par
-   * défaut. Il est possible de nommer les champs explicitement lors
-   * la construction d'une instance.
+   * Case classes, like methods, can have fields with default values.
+   * When instantiating a case class, one can explicitly override the default value of a field.
    */
   case class Server(
       hostname: String,
@@ -41,12 +39,13 @@ object CaseClasses {
   val c = Server("3.4.5.6", os = "Arch")
 
   /*
-   * EXERCICE : vous programmez un anti-âge. Écrivez une fonction qui prend un User
-   * et réduit son âge
-   *   - de 10 ans si la personne a 60 ans ou plus
-   *   - 5 ans si la personne a 50 ans ou plus
-   *   - 2 ans si la personne a 30 ans ou plus
-   *   - 0 si la personne a moins de 30 ans
+   * EXERCISE : You are programming an anti-aging cream.
+   *  Write a function that takes a User as input, and returns an updated User whose age
+   *  has been reduced:
+   *   - of 10 years if the person is 60 years or more
+   *   - of 5 years if the person is 50 years or more
+   *   - of 2 years if the person is 30 years or more
+   *   - of 0 when the person is less than 20
    */
   def magicCream(user: User): User =
     if (user.age >= 60) {

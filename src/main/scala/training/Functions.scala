@@ -3,50 +3,51 @@ package training
 object Functions {
 
   /*
-   * Pour définir une valeur nommée, on utilise val
-   *
-   * Les valeurs sont immuables par défaut
+   * We use the `val` keyword to define a named value
    */
   val a = 10
 
   /*
-   * Le type d'une valeur peut géneralement être inféré. Il peut
-   * toutefois être précisé explicitement.
+   * The type of a named value can generally be inferred by the compiler.
+   * However, it can also be set explicitly
    */
   val b: String = "Lorem ipsum dolor sit amet."
 
   /*
-   * Les méthodes en Scala sont définies avec le mot-clé `def`. Le type de chaque argument
-   * doit être précisé avec `:`. Le type de retour de la fonction peut géneralement être inféré.
+   * Methods are defined with the `def` keyword.
+   * The type of every argument must be explicitly set with a colon.
+   * The return type of the method can generally be inferred
    */
   def add(a: Int, b: Int) = a + b
 
   /*
-   * Les fonctions en Scala renvoient toujours quelque chose. Cerains language font la distinction
-   * entre les epxressions (je signifie quelque chose) et les statements (je fais quelque chose), pas Scala.
+   * Methods in Scala always return something. Some languages make the distinction between
+   * *expressions* (things that mean something) and *statements* (things that do something). Scala
+   * treats everything as expressions.
    *
-   * En Scala, toutes les expressions peuvent être réduites à une valeur et toutes les valeurs ont un type.
-   * Lorsqu'une epxression n'est utilisée que pour ses effets (e.g. écrire dans la console),
-   * son type sera Unit.
+   * In Scala, every expression can be reduced to a value, and all values have a type.
+   * When an expression is merely used for its side-effects (e.g. write to the standard output),
+   * its type will be `Unit`.
    */
   def sayHello(name: String): Unit = println(s"Hello $name!")
 
   /*
-   * Unit est le type contenant une seule valeur `()`
+   * Unit is the type having only one concrete value `()`
    */
   val unit: Unit = ()
 
   /*
-   * Comme Scala est un langage orienté expression, les structures de contrôle aussi sont
-   * des expressions, et peuvent être assignés à des valeurs.
+   * Since Scala is expression-oriented, control structures such as if/else are also expressions.
+   * Since they are expressions, they can be assigned to a value
    */
   def abs(x: Int) = if (x >= 0) x else -x
 
   /*
-   * Les accolades délimitemt une epxression sur plusieurs lignes.
-   * La valeur effective de l'expression sera celle de la dernière ligne
+   * Curly braces are used to delimit expressions that span multiple lines.
+   * The last line of the block will be its effective value.
    *
-   * Dans des conditions ...
+   * Blocks can be used in a lot of places:
+   * In conditions ...
    */
   def isYay = true
   val yayOrNay =
@@ -57,7 +58,7 @@ object Functions {
     }
 
   /*
-   * Mais aussi dans des valeurs nommées
+   * But also in named values:
    */
   val result = {
     val a = 10
@@ -69,11 +70,8 @@ object Functions {
    * --------------------------------
    * EXERCICE:
    *
-   * Écrire une fonction qui prend deux arguments de type String, et
-   * renvoie toujours le premier argument.
-   *
-   * Le deuxième argument doit être en call-by-name pour que la méthode ne plante
-   * pas s'il le deuxième argument lance une exception.
+   * Write a function that takes two arguments of type `Int` and always return the first argument.
+   * The second argument must be call-by-name so the program doesn't crash when we pass a dangerous second argument.
    */
   def returnFirst(a: Int, b: => Int) = a
 }

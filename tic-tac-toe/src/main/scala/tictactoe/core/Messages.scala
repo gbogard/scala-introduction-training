@@ -2,13 +2,13 @@ package tictactoe.core
 import tictactoe.core.Domain.Move
 
 object Messages {
-  val welcome = "Welcome to the tic-tac-toe game!"
-  val prompt = "Où souhaitez vous jouer ? Indiquez les coordonnées, séparées par un espace :"
-  val waitingForOtherPlayer = "En attente de l'autre joueur"
-  val conflict = "Cette place est déjà occupée"
-  def yourTurn(player: Move) = s"Joueur $player, c'est à vous!"
-  def playerWins(player: Move) = s"🎉 Bravo ${player}, vous avez gagné! 🎉"
-  val youLose = "Perdu! Vous ferez mieux la prochaine fois!"
-  val tie = "Égalité! Ex aequo c'est pire que de perdre."
-  val invalidInput = "Veuilliez fournir des coordonnées valides, séparées par un espace."
+  val welcome = "Welcome to the game of Tic Tac Toe!"
+  val prompt = "Where do you want to play? Enter the coordinates of your move separated by a space:"
+  val waitingForOtherPlayer = "Waiting for your opponent ..."
+  val conflict = "This spot is already taken"
+  def yourTurn(player: Move) = s"Player $player, your turn!"
+  def playerWins(player: Move) = s"🎉 Well done $player, you win! 🎉"
+  val youLose = "Game lost! You will do better next time"
+  val tie = "Tie! This is worst than losing"
+  val invalidInput = "Please input valid coordinates, separated by a space"
 }

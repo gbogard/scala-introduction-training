@@ -6,29 +6,30 @@ import cats.effect.IO
 object Logic {
 
   /**
-    * Créé un Board (une matrice de Option[Move]) d'une certain taille.
+    * Creates a Board (a matrix of Option[Move]) of the specified size
     *
-    * Vous pouvez utiliser (1 to size) pour obtenir un intervalle de nombres
-    * sur lequel vous pouvez mapper.
+    * You can use `List.fill`.
+    * You can also use `1 to size` to obtain an Range of integers on which you can `map`
     */
   def createBoard(size: Int): Board = List.fill(size, size)(None)
 
   /**
-    * Un accesseur curryfié pour les Move du plateau.
+    * A getter for a move on the board. This is curried for convenience
+    * (we'll get to that later)
     */
   def getMove(board: Board)(pos: Position): Option[Move] = board(pos.y)(pos.x)
 
   /**
-    * Retourne un plateau mis à jour avec un coup à la position choisie
+    * Returns an updated board by placing a move at a specific position
     *
-    * Vous pouvez utiliser .updated pour obtenir une nouvelle liste avec
-    * un élement unique remplacé
+    * You can use `.updated` to create a new list by replacing a specific element by
+    * its index.
     */
   def placeMove(board: Board, pos: Position, move: Move): Board =
     board.updated(pos.y, board(pos.y).updated(pos.x, Some(move)))
 
   /**
-    * Retourne le prochain joueur en fonction du joueur courant
+    * Returns the next player depending on the current player
     */
   def getNextPlayer(currentPlayer: Move): Move = currentPlayer match {
     case O => X
@@ -36,12 +37,15 @@ object Logic {
   }
 
   /**
-    * Est-ce que le plateau est plein ?
+    * Is there room on the board?
+    *
+    * One approach would be to flatten the board to get a single list of moves, and then check
+    * whether all the spots in the board are full.
     */
   def isBoardFull(board: Board): Boolean = !board.flatten.exists(_.isEmpty)
 
   /**
-    * Scanne le plateau et retourne le gagnant s'il existe.
+    * Scans the board and returns the winner if any
     */
   def whoWins(board: Board): Option[Move] = {
     val get: Position => Option[Move] = getMove(board) _

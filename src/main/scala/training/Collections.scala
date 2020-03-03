@@ -2,23 +2,22 @@ package training
 
 object Collections {
   /*
-   * Les listes permettent de stocker un nombre indterminé de valeurs ordonnées et
-   * de même type.
+   * Lists can store an indeterminate number of ordered values of the same type
    */
   val a = List(1, 2, 3, 4, 10)
 
-  // L'égalité entre les listes tient compte de l'ordre des éléments
+  // List equality takes order into account
   List(1, 2, 3, 4, 10) == a // => true
 
   /*
-   * On peut aussi construire une liste avec la syntaxe :: et Nil
+   * One can also build a list using the :: & Nil syntax
    */
   val b = "foo" :: "bar" :: "baz" :: Nil
 
   /*
-   * Une liste peut être vide.
+   * A List may be empty
    *
-   * Il existe plusieurs manières de déclarer une liste vide :
+   * They are several ways of defining an empty list
    */
   val c: List[String] = List.empty
   val d: List[String] = Nil
@@ -28,44 +27,47 @@ object Collections {
   d == e // => true
 
   /*
-   * On peut mapper sur les List comme sur les Option :
-   * - Si vous avez une List[A]
-   * - et une A => B
-   * - vous avez une List[B]
+   * One can apply a transformation to a List using `map`, just like on options
+   *
+   * When you have a List of A (List[A])
+   * and a function from A to B (A => B)
+   * then `map` gives you a List of B (List[B])
+   *
+   * Example :
    */
   val doubles = a.map(_ * 2)
   // => List(2, 2, 6, 8, 20)
+  // `_ * 2` is equivalent to `a => a * 2`
 
   /*
-   * Les listes sont ordonnées à partir de zéro. On peut accéder à un élement d'une liste
-   * avec liste(index)
+   * Lists are indexed starting from zero. One can access a specific element of a list using
+   * `list(index)`.
    */
   def getElementUnsafe[A](list: List[A], index: Int): A = list(index)
 
   /*
-   * Seulement cette approche est dangereuse : elle va échouer au runtime si l'index demandé
-   * n'existe pas. Pour plus de sécurité, on préferera récupérer une Option[A] grâce à la
-   * méthode .lift
+   * However, this approach is unsafe!
+   * When the required element does not exist, the program fails with an Exception.
+   * You should always prefer the `.lift` method which returns an `Option`
    */
   def getElement[A](list: List[A], index: Int): Option[A] = list.lift(index)
 
   /*
    * --------------------------------
-   * EXERCICE : écrire une fonction qui retourne les nombres pairs
-   * d'une liste de nombres.
+   * EXERCISE : Write a function that returns a list of even numbers from a list of integers
    */
   def getEven(list: List[Int]): List[Int] = list.filter(_ % 2 == 0)
 
   /*
    * --------------------------------
-   * EXERCICE : voici une liste de températures en dégrés Fahrenheit.
+   * EXERCISE : here is a list of temperatures in Fahrenheit degrees.
    *
-   * 1) Ëcrire une fonction de conversion de Fahrenheit vers Celsius en utilisant la formule suivante :
+   * 1) Write a function to convert from Fahrenheit degrees to Celsius using the formula below :
    *       C = (F - 32) * (5/9)
-   * 2) Écrire la fonction qui à une liste de températures en Fahrenheit associe des températures en Celsius
-   * 3) Écrire la fonction qui fait la moyenne des températures
-   *       Moyenne = Somme / nombre de valeurs
-   *    Votre fonction devra prendre en compte le cas de la division par 0
+   * 2) Write a function that returns a list of temperatures in Celsius from a list in Fahrenheit
+   * 3) Write a function that returns the mean temperature
+   *       Mean = Sum / nb of values
+   *    Your function must be *safe* and should never fail.
    */
   def toCelsius(fahrenheit: Float): Float =
     (fahrenheit - 32) * (5F/9)
