@@ -24,6 +24,41 @@ for the Tic Tac Toe Project. Exercises have unit tests that you can run to evalu
 
 ---
 
+### Launching the projects
+
+
+#### Launch the tests for the small exercises
+
+```
+sbt test
+```
+
+#### Launch the tests for the Tic Tac Toe logic
+
+```
+sbt ticTacToeCore/test
+```
+
+#### Launch the local version of the game
+
+```
+sbt ticTacToeCli/run
+```
+
+#### Launch the network version of the game
+
+```
+sbt ticTacToeNetworkServer/run
+```
+
+To connect to the server
+
+```
+nc localhost 4567
+```
+
+The game starts when two people are connected to the server
+
 ### License
 
 This is licensed under a Creative Commons 4.0 BY-NC-SA (Attribution, no commercial use, and share-alike policy).
