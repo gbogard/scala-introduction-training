@@ -966,12 +966,6 @@ Monads `M[A]` have essentially four elements:
 
 ---
 
-![](./img/tictactoe.gif)
-
-### [fit] Your first, purely functional, Scala application
-
----
-
 ## Why monads?
 
 ---
@@ -991,11 +985,17 @@ Monads `M[A]` have essentially four elements:
 
 ---
 
+![](./img/tictactoe.gif)
+
+### [fit] Your first, purely functional, Scala application
+
+---
+
 ## [fit] Building a functional Tic Tac Toe
 
 ---
 
-Let's use what we've learn to build a command-line game that can be played on the network!
+Let's use what we've learn to build a command-line Tic Tac Toe that can be played on the network!
 
 - Tic Tac Toe can be modeled as a _finite state machine_
 - Possible states = a `State` ADT
