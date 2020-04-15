@@ -2,8 +2,11 @@ autoscale: true
 build-lists: true
 
 ![inline](./img/scala.png)
+
 # [fit] Functional programming in Scala
+
 # [fit] A practical introduction
+
 ## [fit] Guillaume Bogard - guillaumebogard.dev
 
 ---
@@ -21,7 +24,7 @@ At the end of this training session, you will:
 # What we will build
 
 - A command-line Tic Tac Toe game that can be played both locally and on the local network
-- We'll follow a *purely functional* style (no mutable state, strict encapsulation of side-effects)
+- We'll follow a _purely functional_ style (no mutable state, strict encapsulation of side-effects)
 - The game logic will be properly tested
 - We'll use common Scala libraries
 
@@ -38,7 +41,7 @@ At the end of this training session, you will:
 
 # Scala in the wild
 
-- Scala is a general purpose language. Its main use cases are 
+- Scala is a general purpose language. Its main use cases are
   - Web development
   - Data engineering
   - Highly concurrent applications more generally
@@ -53,14 +56,14 @@ To productive in Scala you'll need two things :
 
 - `sbt`, which you can install through Homebrew or Sdkman
   - `sdk install sbt`
-- A Scala IDE : Either Intellij IDEA or a text editor with the *Metals* extension
-  - To use *Metals* you'll also need a JDK 8 installed
+- A Scala IDE : Either Intellij IDEA or a text editor with the _Metals_ extension
+  - To use _Metals_ you'll also need a JDK 8 installed
 
 ---
 
 # Meet sbt
 
-Sbt is the *de facto* build tool for Scala.
+Sbt is the _de facto_ build tool for Scala.
 
 - It defines the metadata of your Scala project
 - It fetches your external dependencies
@@ -71,7 +74,9 @@ Sbt is the *de facto* build tool for Scala.
 ---
 
 ![](./img/hyperspace.gif)
+
 ## [fit] It's time to open your first Scala project
+
 ### [fit] Checkout the `exercises` branch and open the project
 
 ---
@@ -107,6 +112,7 @@ sbt run
 # Expressions
 
 - An expression is a combination of terms that can be reduced to a value, e.g.:
+
   - `45 + 3`
   - `"Foo Bar Baz"`
   - `"Hello" + " " + "World"`
@@ -132,9 +138,9 @@ sbt run
 
 - The type of a value can in many cases be inferred ("guessed") by the compiler, meaning:
   - You can define it explicitly:
-  `val name: String = "George"`
+    `val name: String = "George"`
   - Or let the compiler do its work:
-  `val name = "George"
+    `val name = "George"
 
 ---
 
@@ -150,17 +156,17 @@ sbt run
 # Functions
 
 - Methods in Scala are defined with the `def` keyword like so:
-`def square(value: Int) = value * value`
+  `def square(value: Int) = value * value`
 - The return type of a method can be defined explicitly:
-`def square(value: Int): Int = value * value`
+  `def square(value: Int): Int = value * value`
 
-*Methods* and *functions* are slightly different things in Scala, but for now we'll use them interchangeably.
+_Methods_ and _functions_ are slightly different things in Scala, but for now we'll use them interchangeably.
 
 ---
 
 # Different evaluation strategies
 
-*Evaluation* is the process by which *expressions* are reduced to *values*
+_Evaluation_ is the process by which _expressions_ are reduced to _values_
 
 Scala supports different evaluation strategies for named values, methods, and methods arguments.
 
@@ -196,11 +202,11 @@ println(a)
 
 # Call-by-name, call-by-value
 
-- By default, method arguments are evaluated before the body of the function. We call it *call-by-value*
-- *Call-by-name* arguments are evaluated only when accessed within the body of the function, not before
+- By default, method arguments are evaluated before the body of the function. We call it _call-by-value_
+- _Call-by-name_ arguments are evaluated only when accessed within the body of the function, not before
   - It means we can partially evaluate the body of a function without evaluating its arguments
   - They are defined with a fat arrow like so
-  `def greet(name: => String) = println("Hello " + name)`
+    `def greet(name: => String) = println("Hello " + name)`
 
 ---
 
@@ -211,7 +217,7 @@ println(a)
 ---
 
 > I call it my billion-dollar mistake. It was the invention of the null reference in 1965. [...] This has led to innumerable errors, vulnerabilities, and system crashes, which have probably caused a billion dollars of pain and damage in the last forty years.
--- Sir Tony Hoare
+> -- Sir Tony Hoare
 
 ---
 
@@ -231,7 +237,7 @@ println(a)
 - To build an empty option, use the `None` constructor:
 
 ```scala
-val batmanFather: Option[String] = None 
+val batmanFather: Option[String] = None
 ```
 
 - To build an option from a value, use the `Some` constructor:
@@ -280,7 +286,7 @@ println(playerPosition.x)
 - Case classes can be copied
 
 ```scala
-val nextPosition = 
+val nextPosition =
   playerPosition.copy(y = playerPosition.y + 1)
 ```
 
@@ -298,7 +304,7 @@ playerPosition == Position(18, 4) // => true
 
 ---
 
-### Functional programming is a *programming paradigm* that treats computation as the *evaluation* of *pure functions*.
+### Functional programming is a _programming paradigm_ that treats computation as the _evaluation_ of _pure functions_.
 
 ##### (Or, as we call them, functions)
 
@@ -306,7 +312,7 @@ playerPosition == Position(18, 4) // => true
 
 # What are functions?
 
-- In procedural programming, the term *function* is often wrongfully used to mean *procedure*, a way of binding a set of instructions to name and some arguments
+- In procedural programming, the term _function_ is often wrongfully used to mean _procedure_, a way of binding a set of instructions to name and some arguments
 
 - In FP, we treat functions as mere arrows between values of two sets
 
@@ -320,7 +326,7 @@ playerPosition == Position(18, 4) // => true
 
 # A bit of history : Lambda-calculus
 
-Lambda-calculus is the foundation of all functional languages. It can be described as the  *most simple, universal programming language*
+Lambda-calculus is the foundation of all functional languages. It can be described as the _most simple, universal programming language_
 
 Lambda-calculus doest not care about the computer. It abstracts away the computation steps under a purely expressive form, much like FP languages
 
@@ -328,7 +334,7 @@ Everything that can be computed by a Turing machine can be expressed in Lambda-c
 
 [^1]: Look at the Church-Turing thesis
 
---- 
+---
 
 # The syntax of λ-calculus
 
@@ -344,8 +350,8 @@ $$
 
 <br/>
 
-λ-calculus is tiny symbol manipulation framework. 
-It is entirely *expression-oriented*.
+λ-calculus is tiny symbol manipulation framework.
+It is entirely _expression-oriented_.
 
 ---
 
@@ -371,13 +377,13 @@ $$
 
 ---
 
-Abstractions in λ-calculus don’t need to be named. 
+Abstractions in λ-calculus don’t need to be named.
 
 Lambda calculus introduced anonymous functions as values for the first time. I
 
 In some programming languages, anonymous functions are still called lambda expressions today.
 
-Abstractions in λ-calculus are mappings from one expression to another. They are *unary* (only one argument)
+Abstractions in λ-calculus are mappings from one expression to another. They are _unary_ (only one argument)
 
 ---
 
@@ -395,35 +401,37 @@ $$
 \lambda x .\lambda y.xy
 $$
 
-A function of two arguments *x* and *y* can be expressed as a function of a single argument *x*, itself returning a function of a single argument *y*. This is called *currying*.
+A function of two arguments _x_ and _y_ can be expressed as a function of a single argument _x_, itself returning a function of a single argument _y_. This is called _currying_.
 
-Most importantly, λ-calculus introduced *higher-order functions* : functions that can take return other functions or take them as argument. `map`, `filter`, `reduce` ... you already know some of them!
+Most importantly, λ-calculus introduced _higher-order functions_ : functions that can take return other functions or take them as argument. `map`, `filter`, `reduce` ... you already know some of them!
 
 ---
 
-# Some definitions 
+# Some definitions
 
 - α-conversion : λx.x = λy.y (any variable can be renamed given it isn’t free)
 - Β-reduction : lambda-terms may be reduced to a simpler form through a succession of conversions, until we reach a form we cannot further simplify (β-normal form)
- - This is the foundation of program *evaluation*
+- This is the foundation of program _evaluation_
 
 ⚠ Some terms cannot be reduced (halting problem)
 
 ---
 
 ![](./img/abstract.gif)
+
 # Why do we care about Lambda-Calculus?
+
 ## A story of abstractions
 
 ---
 
-Turing machines are hypothetical devices that perform state-based computation on an infinite strip. Turing machines work *imperatively*.
+Turing machines are hypothetical devices that perform state-based computation on an infinite strip. Turing machines work _imperatively_.
 
-On the other hand, Lambda-calculus is a purely abstract symbol rewriting framework. It's *expressive*.
+On the other hand, Lambda-calculus is a purely abstract symbol rewriting framework. It's _expressive_.
 
 <br/>
 
-Modern computers are built on the foundation of Turing machines. 
+Modern computers are built on the foundation of Turing machines.
 
 **One can usually categorize a programming language based on the level of abstraction it provides over the computer**
 
@@ -441,12 +449,11 @@ Modern computers are built on the foundation of Turing machines.
 
 # Thinking beyond the machine
 
-
 - Computers work imperatively. They execute instructions that change their state over time
 - Functional programming languages operate on a higher level of abstraction : They don't care about the computer, they care very little for state, let alone time ... and it's great!
 - Modern computers are more than capable of supporting these abstractions. Functional languages open up more possibilities for software engineering and developer productivity
 
---- 
+---
 
 ### Programming concepts that come from Lambda-calculus
 
@@ -457,23 +464,24 @@ Modern computers are built on the foundation of Turing machines.
 - **Higher-order functions**
 - Currying
 - Closures
-...
+  ...
 
 ---
 
 # [fit] Defining pure functions
-## [fit] How to identify *pure functions* in an impure language such as Scala?
+
+## [fit] How to identify _pure functions_ in an impure language such as Scala?
 
 ---
 
 ## Referential transparency
 
 - Referential transparency is one of the two key properties of pure functions
-- A functions is *referentially transparent* if you can substitute its *application* for its return value without changing the program's behavior
+- A functions is _referentially transparent_ if you can substitute its _application_ for its return value without changing the program's behavior
 
 ---
 
-## Example 
+## Example
 
 ```scala
 def square(a: Int) = a * a
@@ -488,7 +496,7 @@ val result = 36
 
 are equivalent programs, which means that `square` is referentially transparent
 
-We can also say it has no *side effects*.
+We can also say it has no _side effects_.
 
 ---
 
@@ -518,15 +526,15 @@ While the value of `result` is the same in both cases, the runtime behaviors of 
 - They are easy to execute in parallel
 - Predictability! You know exactly how your program will run
 - Memoization : if a function is guaranteed to return always the same result for some input, it can be memoized (cached) without risks
- 
+
 ---
 
 ## Totality
 
 - Totality is the other key characteristic of pure functions
-- A function `A => B` must absolutely yield a value of `B` for *any* value `A`
-- Partial functions (functions that operate on subsets of `A` or `B`) are unsafe
-- As a rule of thumb, *if it compiles, it must always work*
+- A function `A => B` must absolutely yield a value of `B` for _any_ value `A`
+- Partial functions (functions that operate on a subset of `A`) are unsafe
+- As a rule of thumb, _if it compiles, it must always work_
   - Exceptions break totality and should be avoided im most cases
 
 ---
@@ -603,7 +611,7 @@ def mean(numbers: List[Int]): Float = {
 def getSecret(user: User): Secret =
   if (user.isAdmin()) {
 		secret
-	} 
+	}
   else {
 	  throw new Exception(“You don’t have access”)
   }
@@ -611,11 +619,11 @@ def getSecret(user: User): Secret =
 
 ---
 
-### From now one, we will only use pure functions
+### From now on, we will only use pure functions
 
 ---
 
-## Wait, how am I supposed to *do* stuff if everything is forbidden?
+## Wait, how am I supposed to _do_ stuff if everything is forbidden?
 
 ---
 
@@ -629,7 +637,9 @@ def getSecret(user: User): Secret =
 ---
 
 ![](./img/collections.gif)
+
 # Scala collections
+
 #### Collections.scala
 
 ---
@@ -682,7 +692,9 @@ def getSecret(user: User): Secret =
 ---
 
 ![](./img/adt.gif)
+
 ## [fit] Building new types
+
 ### [fit] Domain modeling using Algebraic Data Types
 
 #### ADT.scala
@@ -694,7 +706,7 @@ def getSecret(user: User): Secret =
 Tuples and case classes can encapsulate the values of several types into one single value :
 
 ```scala
-val cathy: (String, Int, Role) = 
+val cathy: (String, Int, Role) =
   ("Cathy", 38, Role.Manager)
 ```
 
@@ -727,7 +739,7 @@ case class User(
 )
 ```
 
-can be expressed as 
+can be expressed as
 
 ```scala
 type User = (String, String)
@@ -741,7 +753,7 @@ Keep tuples for very simple values and internal use only.
 # Sum types
 
 - Sum types can hold values coming from exactly one of several fixed types
-- They are sometimes called *variants*, *disjoint unions* or *discriminated unions*
+- They are sometimes called _variants_, _disjoint unions_ or _discriminated unions_
 - They can be recursive
 
 ---
@@ -756,14 +768,14 @@ Keep tuples for very simple values and internal use only.
 
 ## Lists are recursive sum types!
 
-The `List` structure, a linked list, is sum type of two *terms* :
+The `List` structure, a linked list, is sum type of two _terms_ :
 
 ```scala
 sealed trait List[+A]
 // A Nil term representing an empty list
 case object Nil extends List[Nothing]
 
-// A :: term representing an element 
+// A :: term representing an element
 //and a pointer to the rest of the list
 case class ::[A](head: A, tail: List[A]) extends List[A]
 ```
@@ -795,7 +807,7 @@ val nb = 1 :: 2 :: 3 :: 4 :: Nil
 
 # A sum type for our Tic Tac Toe
 
-We can model a *move* in the Tic Tac Toe game using a sum type
+We can model a _move_ in the Tic Tac Toe game using a sum type
 
 ```scala
 sealed trait Move
@@ -817,7 +829,7 @@ NB: Case objects are singleton objects. You can see them as sets of exactly one 
 
 ## Pattern matching
 
-- Pattern matching is a pure mapping between a *pattern of expressions* on the left side, and an expression on the right side.
+- Pattern matching is a pure mapping between a _pattern of expressions_ on the left side, and an expression on the right side.
 - It can deconstruct case classes and match their individual fields
 - It can have arbitrary guards (if statements)
 - Exhaustivity can be enforced at compile tile
@@ -835,13 +847,12 @@ NB: Case objects are singleton objects. You can see them as sets of exactly one 
 
 ---
 
-
 ## General strategies for building total functions
 
 In order to make a function total, you generally have two possible approaches:
 
-- Restrict the input of the function (or *domain*) so that your function can't be called with input you can't deal with
-- Expand the output of the function (or *codomain*) so that you can produce a result in every case
+- Restrict the input of the function (or _domain_) so that your function can't be called with input you can't deal with
+- Expand the output of the function (or _codomain_) so that you can produce a result in every case
 
 ---
 
@@ -851,7 +862,7 @@ In order to make a function total, you generally have two possible approaches:
 
 Expanding the output generally means turning your return type from `A` to `Option[A]`, `Either[Error, A]` or another structure.
 
-Instead of returning values from the smaller set `A`, you operate on a bigger set, the set of *A + all the possible edge-cases*.
+Instead of returning values from the smaller set `A`, you operate on a bigger set, the set of _A + all the possible edge-cases_.
 
 You essentially force your caller to deal with the edge cases somewhere outside.
 
@@ -859,7 +870,7 @@ You essentially force your caller to deal with the edge cases somewhere outside.
 
 ## Restricting the input
 
-You can alsso change the types of your arguments to accept a smaller set of values. This way, you ensure your function cannot be called with values you can't handle.
+You can also change the types of your arguments to accept a smaller set of values. This way, you ensure your function cannot be called with values you can't handle.
 
 For instance, instead of accepting any `String`, you can use a sum type as your input type.
 
@@ -871,7 +882,7 @@ Scala let's you perform the most common computing tasks without relying on side-
 
 Writing total functions means you don't need Exceptions to deal with edge-cases, hence no crashes at runtime.
 
-Writing referentially transparent functions means you can refactor your code safely. It also means *no lies* : your types should always tell the truth
+Writing referentially transparent functions means you can refactor your code safely. It also means _no lies_ : your types should always tell the truth
 
 ---
 
@@ -880,7 +891,8 @@ Writing referentially transparent functions means you can refactor your code saf
 ---
 
 ## But still,
-## what if I *need* that side-effect?
+
+## what if I _need_ that side-effect?
 
 ---
 
@@ -893,14 +905,14 @@ Writing referentially transparent functions means you can refactor your code saf
 ## IO monads
 
 - The `IO` monad comes from Haskell, a purely functional language where side effects are strictly forbidden
-- An `IO[A]` represents a *lazy* computation that has some side effects and eventually yields a value of type `A`
+- An `IO[A]` represents a _lazy_ computation that has some side effects and eventually yields a value of type `A`
 - IOs can be transformed with `map` and composed with `flatMap` just like `Option` and `List`
 
 ---
 
 ## Why do we care?
 
-- The #1 reason: **functions signatures are contract*. When you perform a side-effect without signaling it, you break the contract. (aka. *Friends don't lie*)
+- The #1 reason: \*_functions signatures are contract_. When you perform a side-effect without signaling it, you break the contract. (aka. _Friends don't lie_)
 - `IO`s reduce the need for further documentation and the risk of forgetting to catch an exception
 - They are referentially transparent, so you can define them in any order
 - In a FP team, other functions should be assumed to be pure
@@ -920,21 +932,73 @@ Writing referentially transparent functions means you can refactor your code saf
   - Reactive streams with fs2
   - Purely functional database access with Doobie
   - Highly performant HTTP APIs with Http4s
-  ...
+    ...
+
+---
+
+## IO is a Monad. What is that?
+
+---
+
+**A Monad `M[A]` is an immutable data structure used to describe the computation of one or more values of type `A`**
+
+- Values of type `A` can be turned into _monadic values_ `M[A]`
+- Monads can chain subsequent computations (i.e solve big problems out of smaller problems)
+- They describe some _functional effect_: `Option` describes optionality, `Either` describes failure ...
+
+---
+
+Monads `M[A]` have essentially four elements:
+
+- A `pure` method that wraps `A` into the type constructor `M[A]`
+- A `map` method of the form `M[A] => (A => B) => M[B]`, which is the definition of a _functor_
+- A `flatMap` method of the form
+  `M[A] => (A => M[B]) => M[B]`
+- Laws called _identities_
+
+---
+
+## You already know how to use them
+
+---
+
+![inline](./img/table.svg)
 
 ---
 
 ![](./img/tictactoe.gif)
 
 ### [fit] Your first, purely functional, Scala application
+
+---
+
+## Why monads?
+
+---
+
+- Monads are used to encode *functional effects* such as optionality or failure, in a way that **makes the effect appear in the signature**
+(Remember, signatures must always tell the truth)
+
+- The essence of a monad is *composition*, the ability to chain dependent computations
+  - All monads can be used in a *for-comprehension*
+
+---
+
+#### Because they can encode all sorts of effects using the same signatures, monads can encode features that would otherwise require specific syntax at the language level.
+
+![inline](./img/flatMapJoke.png)
+
+
+---
+
 ## [fit] Building a functional Tic Tac Toe
 
 ---
 
 Let's use what we've learn to build a command-line game that can be played on the network!
 
-- Tic Tac Toe can be modeled as a *finite state machine*
+- Tic Tac Toe can be modeled as a _finite state machine_
 - Possible states = a `State` ADT
 - State transitions = pure function of `State => State`
-- The board will be a matrix of *moves*, modeled as a two-dimensional `List`
+- The board will be a matrix of _moves_, modeled as a two-dimensional `List`
 - The user interface and server can be separated from the core logic using higher-order functions and IO monads
